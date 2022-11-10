@@ -91,8 +91,8 @@ args = types.SimpleNamespace()
 args.RUN_DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
 
 # checks if the GPU has enough memory
-available_vram = torch.cuda.get_device_properties(0).total_memory - torch.cuda.memory_allocated()
 if args.RUN_DEVICE == 'cuda':
+    available_vram = torch.cuda.get_device_properties(0).total_memory - torch.cuda.memory_allocated()
     if torch.cuda.get_device_properties(0).total_memory >= 6 * 1024 * 1024 * 1024 and available_vram >= 6 * 1024 * 1024 * 1024:
         log('GPU memory is enough! Size is: ' + str(floor(torch.cuda.get_device_properties(0).total_memory/1024/1024/1024)) + 'GB\nUsing GPU')
     else:
