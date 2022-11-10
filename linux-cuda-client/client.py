@@ -78,7 +78,7 @@ def session(): # Gets session ID from work server, (or uses the one you set abov
         try:
             requests.get(WORK_SERVER_URL + "/api/status")
         except:
-            log("Could not connect to work server! Contact the developer on Discord(https://discord.gg/FZyGH3PGfs), or try again later.")
+            log("Could not connect to work server! Contact the developer on Discord(Pathos#6969 @ https://discord.gg/FZyGH3PGfs), or try again later.")
             log("Exiting...")
             exit(1)
     return SESSION_ID 
@@ -87,10 +87,10 @@ def session(): # Gets session ID from work server, (or uses the one you set abov
 
 args = types.SimpleNamespace()
 
-# detect available devices
+# detects available devices
 args.RUN_DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
 
-# check if the GPU has enough memory
+# checks if the GPU has enough memory
 available_vram = torch.cuda.get_device_properties(0).total_memory - torch.cuda.memory_allocated()
 if args.RUN_DEVICE == 'cuda':
     if torch.cuda.get_device_properties(0).total_memory >= 6 * 1024 * 1024 * 1024 and available_vram >= 6 * 1024 * 1024 * 1024:
@@ -98,6 +98,7 @@ if args.RUN_DEVICE == 'cuda':
     else:
         log('GPU memory is not enough! Must be at least 6GB.\nSize is: ' + str(torch.cuda.get_device_properties(0).total_memory/1024/1024/1024) + 'GB\nUsing CPU')
         args.RUN_DEVICE = 'cpu'
+args.RUN_DEVICE = 'cpu'
         
 # fp32 // bf16 (saves VRAM, slightly less accurate) -- Should be fine to leave as is unless you're just curious, 
 # or if your hardware doesn't support bf16
