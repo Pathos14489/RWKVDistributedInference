@@ -3,7 +3,9 @@ Uses: https://github.com/BlinkDL/RWKV-LM
 
 ## What is this?
 
-RWKV-LM is a Language Model that competes in output quality with GPT, with some key differences. One of them being how much more efficient it is to run on normal consumer hardware at decent speeds. This is insteaded to be a starting ground server that works out of the box for assigning prompts for completion to an arbitrary number of clients communicating with the server for work to inference completions for.
+RWKV-LM is a Language Model that competes in output quality with GPT-Neo and GPT-J, with some key differences. One of them being how much more efficient it is to run on normal consumer hardware at decent speeds. This is insteaded to be a starting ground server that works out of the box for assigning prompts for completion to an arbitrary number of clients communicating with the server for work to inference completions for.
+
+This uses the 3B RWKV Model as is, but 7B or 14B could easily be swapped in with minor changes to the client.py scripts. But the run requirements are much higher for GPUs(15GB VRAM required for 7B according to BlinkDL), hence why I went with 3B for this example. But larger models will still work on CPU just fine! They'll need more RAM, and run slower, but they're definitely usable at some level.
 
 Think https://stablehorde.net/, but instead of inferencing Stable Diffusion, it's inferencing RWKV.
 
