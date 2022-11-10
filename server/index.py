@@ -17,6 +17,13 @@ job_dir = "./jobs/" # Where jobs prompts are stored -- every job exists solely a
 work_dir = "./work/" # Where work is stored after it's been done and returned to the server from a worker client.
 minimum_work = 5 # noticed that in small amounts of work, it could sometimes doo over 5 but not always and not very many over typically. I think it's race condition related, but frankly it isn't really that big of a concern to me, as it only results in getting extra data so who gives a shit.
 
+#Initialize the directory
+os.makedirs(work_dir, exist_ok=True)
+os.makedirs(job_dir, exist_ok=True)
+os.makedirs("workers/", exist_ok=True)
+if not os.path.exists("./verified"):
+    open("./verified", 'w').close()
+
 def create_api(): # create the Flask API object
     api = Flask(__name__)
     return api
